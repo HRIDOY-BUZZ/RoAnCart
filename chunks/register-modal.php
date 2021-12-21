@@ -1,7 +1,7 @@
 <section class="registermodal">
 	<div id="modal2" class="modal">
 	    <div class="modal-content center">
-	      <h4>Customers,Register Here!</h4>
+	      <h4>Customers, Register Here!</h4>
 
 	      <h5><small class="center" id="reg_error" style="color: red;"></small></h5>
 	      <form>
