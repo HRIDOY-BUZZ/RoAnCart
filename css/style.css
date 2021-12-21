@@ -1,0 +1,109 @@
+.sidenav a {
+    text-decoration: none;
+}
+
+.nav-wrapper>a {
+    text-decoration: none;
+    font-family: 'ariel', cursive;
+    color: white;
+}
+
+.nav-wrapper>a:hover {
+    color: black;
+}
+
+.hvr-grow {
+    text-decoration: none;
+}
+
+.hvr-grow:hover,
+.hvr-grow:focus,
+.hvr-grow:active {
+    text-decoration: none;
+    color: black;
+}
+
+.slider .indicators .indicator-item.active {
+    background-color: green !important;
+}
+
+@media(max-width: 992px) {
+
+    .nav-wrapper>a:hover {
+        color: black;
+    }
+}
+
+@media(min-width: 992px) {
+    .nav-wrapper>a {
+        padding-left: 35px;
+    }
+}
+
+.banner-text {
+    font-size: 3rem !important;
+    font-style: bold !important;
+    font-family: 'Bree Serif', serif;
+    text-shadow: 2px 2px #000000;
+}
+
+.banner-text2 {
+    font-style: bold !important;
+    text-shadow: 2px 1px #000000;
+}
+
+.forgot-pass {
+    margin-top: 20px;
+}
+
+.forgot-pass a {
+    color: green;
+    text-decoration: underline;
+}
+
+.forgot-pass a:hover {
+    color: darkgreen;
+    text-shadow: 0 0 30px black;
+}
+
+.forgot-pass a small {
+    float: left;
+}
+
+.email-sec {
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+
+.col-40 {
+    width: 40% !important;
+}
+
+@media(max-width: 1920px) {
+    .email-sec {
+        margin-top: 200px;
+        margin-bottom: 200px;
+    }
+}
+
+@media(max-width: 1600px) {
+    .email-sec {
+        margin-top: 120px;
+        margin-bottom: 120px;
+    }
+}
+
+@media(max-width: 1366px) {
+    .email-sec {
+        margin-top: 80px;
+        margin-bottom: 80px;
+    }
+}
+
+.reset-sec {
+    margin-top: 80px;
+    margin-bottom: 80px;
+}
+.header{
+  color : black;
+}
