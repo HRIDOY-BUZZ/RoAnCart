@@ -90,7 +90,7 @@ $arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
 						else
 						{
 					?>
-					<a href="" style="background: brown;" class="btn waves-effect waves-block waves-light">
+					<a href="#" style="background: brown;" class="btn waves-effect waves-block waves-light">
 							OUT OF STOCK
 					</a>
 					<?php
