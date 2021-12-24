@@ -1,6 +1,6 @@
 function isEmail(evt) {
     var charCode = evt.which || event.charCode || event.char;
-    if ((charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122) && (charCode != 64) && (charCode != 46) && (charCode != 95) && (charCode != 33) && (charCode > 31 && (charCode < 48 || charCode > 57)))
+    if ((charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122) && (charCode != 64) && (charCode != 46) && (charCode != 95) && (charCode != 33) && (charCode > 31 && (charCode < 48 || charCode > 57)) && (charCode != 45))
         return false;
 
     return true;
@@ -8,27 +8,46 @@ function isEmail(evt) {
 
 function isAlphaNumSpace(evt) {
     var charCode = evt.which || event.charCode || event.char;
-    if ((charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122) && (charCode != 64) && (charCode != 46) && (charCode != 95) && (charCode != 33) && (charCode > 31 && (charCode < 48 || charCode > 57)) && (charCode != 32))
+    if ((charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122) && (charCode != 64) && (charCode != 46) && (charCode != 95) && (charCode != 33) && (charCode > 31 && (charCode < 48 || charCode > 57)) && (charCode != 32) && (charCode != 45))
         return false;
 
+    return true;
+}
+
+function isAddr(evt) {
+    var charCode = evt.which || event.charCode || event.char;
+    if ((charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122) && (charCode != 64) && (charCode != 46) && (charCode != 95) && (charCode != 33) && (charCode > 31 && (charCode < 32 || charCode > 60)))
+        return false;
+
+    return true;
+}
+
+function isNum(evt) {
+    var charCode = evt.which || event.charCode || event.char;
+    if ((charCode < 48 || charCode > 57) && (charCode != 43) && (charCode != 45))
+        return false;
 
     return true;
 }
 
 $(function() {
     $('#submit_reg').click(function() {
-
+        alert("Ajax");
         var name = $('#name_reg').val()
         var email = $('#email_reg').val()
+        var phone = $('#phone_reg').val()
+        var addr = $('#addr_reg').val()
         var password = $('#password_reg').val()
         var con_password = $('#con_password_reg').val()
         var instance2 = M.Modal.getInstance($('#modal2'));
 
         var mail_regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z]{2,4})+$/;
 
-        var name_regex = /^[(A-Z)?(a-z)?(0-9)?\s*]+$/;
+        var name_regex = /^[-*(A-Z)*(a-z)*\s*]+$/;
 
-        if ((name == "") || (email == "") || (password == "") || (con_password == "")) {
+        var phone_regex = /^(\+88)?01[3-9]{1}[0-9]{8}+$/;
+
+        if ((name == "") || (email == "") || (phone == "") || (addr == "") || (password == "") || (con_password == "")) {
 
             $('#reg_error').text("Don't leave the fields blank!");
             // instance2.open();
@@ -39,6 +58,10 @@ $(function() {
         } else if (!name_regex.test(name)) {
 
             $('#reg_error').text('Enter a Proper Name!');
+            // instance2.open();
+        } else if (!phone_regex.test(phone)) {
+
+            $('#reg_error').text('Enter a Valid Contact Number!');
             // instance2.open();
         } else if (password != con_password) {
 
@@ -52,6 +75,8 @@ $(function() {
                 data: {
                     'name': name,
                     'email': email,
+                    'phone': phone,
+                    'address': addr,
                     'password': password
                 },
                 dataType: 'json',
@@ -65,6 +90,10 @@ $(function() {
                     $('#name_reg').val("")
 
                     $('#email_reg').val("")
+
+                    $('#phone_reg').val("")
+
+                    $('#addr_reg').val("")
 
                     $('#password_reg').val("")
 
