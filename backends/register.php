@@ -1,12 +1,12 @@
 <?php
-echo "PHP";
+// echo "PHP";
 try {
 
     if (!file_exists('connection-pdo.php' ))
         throw new Exception();
     else
         require_once('connection-pdo.php' );
-		echo "Connected";
+		// echo "Connected";
 
 } catch (Exception $e) {
 
@@ -28,7 +28,7 @@ if (!isset($_POST['name']) || !isset($_POST['email']) || !isset($_POST['phone'])
 $regex_email = '/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/';
 $regex_name = '/^[-*(A-Z)?(a-z)?(0-9)?\s*]+$/';
 
-$regex_phone = '/^(\+88)?01[3-9]{1}[0-9]{8}+$/';
+$regex_phone = '/^(\+88)?01[3-9]{1}[0-9]{8}$/';
 
 $regex_password = '/^[(A-Z)?(a-z)?(0-9)?!?@?#?-?_?%?]+$/';
 
@@ -42,7 +42,7 @@ if (!preg_match($regex_name, $_POST['name']) || !preg_match($regex_email, $_POST
 
 } else {
 
-	date_default_timezone_set("Asia/Dhaka");
+	// date_default_timezone_set("Asia/Dhaka");
 
 	$email = $_POST['email'];
 	$name = $_POST['name'];

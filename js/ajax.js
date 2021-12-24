@@ -32,7 +32,7 @@ function isNum(evt) {
 
 $(function() {
     $('#submit_reg').click(function() {
-        alert("Ajax");
+        // alert("Ajax");
         var name = $('#name_reg').val()
         var email = $('#email_reg').val()
         var phone = $('#phone_reg').val()
@@ -45,7 +45,7 @@ $(function() {
 
         var name_regex = /^[-*(A-Z)*(a-z)*\s*]+$/;
 
-        var phone_regex = /^(\+88)?01[3-9]{1}[0-9]{8}+$/;
+        var phone_regex = /^(\+88)?01[3-9]{1}[0-9]{8}$/;
 
         if ((name == "") || (email == "") || (phone == "") || (addr == "") || (password == "") || (con_password == "")) {
 
@@ -68,7 +68,7 @@ $(function() {
             $('#reg_error').text("Passwords doesn't match!");
             // instance2.open();
         } else {
-
+            // alert("Ajax");
             $.ajax({
                 url: 'backends/register.php',
                 type: 'POST',
