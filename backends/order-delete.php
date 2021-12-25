@@ -30,7 +30,7 @@ if (!isset($_REQUEST['id'])) {
 	$id = $_REQUEST['id'];
 
 	//Getting Order Details
-	$sql = "SELECT * FROM orders WHERE order_id = ?";
+	$sql = "SELECT * FROM cart WHERE order_id = ?";
 	$query  = $pdoconn->prepare($sql);
     $query->execute([$id]);
 	$order = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -51,7 +51,7 @@ if (!isset($_REQUEST['id'])) {
 	$query->execute();
 
 	//Deleteing Order
-	$sql = "DELETE FROM orders WHERE order_id = ?";
+	$sql = "DELETE FROM cart WHERE order_id = ?";
     $query  = $pdoconn->prepare($sql);
 
     if ($query->execute([$id])) {

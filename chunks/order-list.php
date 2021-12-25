@@ -7,7 +7,7 @@ $arr_all = array();
 
 if (isset($_SESSION['user_id'])) {
 
-	$sql = 'SELECT * FROM orders WHERE user_id = "'.$_SESSION['user_id'].'"';
+	$sql = 'SELECT * FROM cart WHERE user_id = "'.$_SESSION['user_id'].'"';
 	$query  = $pdoconn->prepare($sql);
 	$query->execute();
  	$arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -94,6 +94,12 @@ if (isset($_SESSION['user_id'])) {
 		<?php
 			}
 		?>
+		<div class="section white center">
+			<a href="backends/confirm-order.php?id=<?php echo $_SESSION['user_id']; ?>" 
+			style="background: green;" class="btn btn-big waves-effect waves-block waves-light prices">
+				Confirm Order
+			</a>
+		</div>
 
 	</div>
 

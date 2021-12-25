@@ -57,7 +57,7 @@ $timest = date("d:m:Y h:i:sa");
 
 if($stock > 0)
 {
-	$sql = "INSERT INTO orders(order_id,user_id,product_id,product_name,user_name,price, timestamp) VALUES(?,?,?,?,?,?,?)";
+	$sql = "INSERT INTO cart(order_id,user_id,product_id,product_name,user_name,price, timestamp) VALUES(?,?,?,?,?,?,?)";
 
 	$query  = $pdoconn->prepare($sql);
 
