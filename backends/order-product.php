@@ -35,9 +35,17 @@ date_default_timezone_set("Asia/Dhaka");
 
 $product_id = $_REQUEST['id'];
 
-$product_name = $_REQUEST['name'];
+$sql = 'SELECT * FROM product WHERE id = '.$product_id.' LIMIT 1';
 
-$price = $_REQUEST['price'];
+$query  = $pdoconn->prepare($sql);
+$query->execute();
+$product = $query->fetchAll(PDO::FETCH_ASSOC);
+
+$product_name = $product[0]['pname'];
+
+$price = $product[0]['price'];
+
+$stock = $product[0]['stock'];
 
 $user_name = $_SESSION['user'];
 
@@ -47,21 +55,34 @@ $order_id = "TVP" . strval(mt_rand(100000, 999999));
 
 $timest = date("d:m:Y h:i:sa");
 
+if($stock > 0)
+{
+	$sql = "INSERT INTO orders(order_id,user_id,product_id,product_name,user_name,price, timestamp) VALUES(?,?,?,?,?,?,?)";
 
-$sql = "INSERT INTO orders(order_id,user_id,product_id,product_name,user_name,price, timestamp) VALUES(?,?,?,?,?,?,?)";
+	$query  = $pdoconn->prepare($sql);
 
-$query  = $pdoconn->prepare($sql);
+	if ($query->execute([$order_id, $user_id, $product_id, $product_name, $user_name, $price, $timest])) {
+		$stock--;
+		$sql = 'UPDATE product SET stock= '.$stock.' WHERE id = '.$product_id;
+		$query  = $pdoconn->prepare($sql);
+		$query->execute();
+		
+		$_SESSION['msg'] = 'Order Placed! Your Order ID is : '.$order_id.'. Check Your Cart for more details.';
 
-if ($query->execute([$order_id, $user_id, $product_id, $product_name, $user_name, $price, $timest])) {
+		header('location: ../products.php');
 
-	$_SESSION['msg'] = 'Order Placed! Your Order ID is : '.$order_id.'. Check Your Cart for more details.';
+	} else {
 
-	header('location: ../products.php');
+		$_SESSION['msg'] = 'There were some problem in the server! Please try again after some time!';
 
-} else {
+		header('location: ../products.php');
 
-	$_SESSION['msg'] = 'There were some problem in the server! Please try again after some time!';
-
-	header('location: ../products.php');
-
+	}
 }
+else
+{
+	$_SESSION['msg'] = 'Sorry! Product Currently Unavailable!';
+
+		header('location: ../products.php');
+}
+	

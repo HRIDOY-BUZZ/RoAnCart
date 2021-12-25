@@ -81,8 +81,8 @@ $arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
 						if($arr_all[$i+$j-2]['stock']>0)
 						{
 					?>
-					<a href="backends/order-product.php?id=<?php echo $arr_all[$i+$j-2]['id']; ?>&name=<?php echo $arr_all[$i+$j-2]['pname']; ?>&price=<?php echo $arr_all[$i+$j-2]['price']; ?>" 
-						style="background: green;" class="btn waves-effect waves-block waves-light">
+					<a href="backends/order-product.php?id=<?php echo $arr_all[$i+$j-2]['id']; ?>" 
+						style="background: green;" class="btn waves-effect waves-block waves-light prices">
 							ADD to CART! (<?php echo $arr_all[$i+$j-2]['price']; ?> BDT)
 					</a>
 					<?php
