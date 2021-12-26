@@ -2,7 +2,7 @@
 
 $host = "localhost";
 $user= "root";
-$pwd = "@Buzz6157";
+$pwd = "root";
 $database = "tech";
 
 ?>

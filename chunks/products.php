@@ -65,12 +65,38 @@ $arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
 				        <img class="activator" src="images/<?php echo $arr_all[$i+$j-2]['image']; ?>">
 				    </div>
 				    <div class="card-content">
-                        <span class="card-title activator grey-text text-darken-4"><a class="black-text" href=""><h5><?php echo $arr_all[$i+$j-2]['pname']; ?></h5></a><i class="material-icons right">keyboard_arrow_up</i></span>
+                        <span class="card-title activator grey-text text-darken-4">
+							<a class="black-text" href="">
+								<h5>
+									<?php echo $arr_all[$i+$j-2]['pname']; ?>
+								</h5>
+							</a>
+							<i class="material-icons right">keyboard_arrow_up</i>
+						</span>
 				      <div class="card-content">
 			          <p>This is a popular Product of RoAnCart. Order Now to Show your Creativity!</p>
 			        </div>
 			        <div class="card-content center">
-			          <a href="backends/order-product.php?id=<?php echo $arr_all[$i+$j-2]['id']; ?>&name=<?php echo $arr_all[$i+$j-2]['pname']; ?>&price=<?php echo $arr_all[$i+$j-2]['price']; ?>" style="background: green;" class="btn waves-effect waves-block waves-light" href="">ADD to CART! (<?php echo $arr_all[$i+$j-2]['price']; ?> BDT)</a>
+					<?php 
+						if($arr_all[$i+$j-2]['stock']>0)
+						{
+					?>
+					<a href="backends/order-product.php?id=<?php echo $arr_all[$i+$j-2]['id']; ?>" 
+						style="background: green;" class="btn waves-effect waves-block waves-light prices">
+							ADD to CART! (<?php echo $arr_all[$i+$j-2]['price']; ?> BDT)
+					</a>
+					<?php
+						}
+						else
+						{
+					?>
+					<a href="#" style="background: brown;" class="btn waves-effect waves-block waves-light">
+							OUT OF STOCK
+					</a>
+					<?php
+						}
+					?>
+						
 			        </div>
 				    </div>
 				    <div class="card-reveal">

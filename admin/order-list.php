@@ -8,7 +8,8 @@
 
 require('../backends/connection-pdo.php');
 
-$sql = 'SELECT orders.order_id, orders.user_name, orders.timestamp, product.pname FROM orders LEFT JOIN product ON orders.product_id = product.id';
+// $sql = 'SELECT orders.order_id, orders.user_name, orders.timestamp, product.pname FROM orders LEFT JOIN product ON orders.product_id = product.id';
+$sql = 'SELECT * FROM orders';
 
 $query  = $pdoconn->prepare($sql);
 $query->execute();
@@ -44,7 +45,11 @@ $arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
           <tr>
               <th>Order ID</th>
               <th>User Name</th>
+              <th>Address</th>
+              <th>Contact</th>
               <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
               <th>Timestamp</th>
               <th>Action</th>
           </tr>
@@ -54,12 +59,26 @@ $arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
           <?php
 
             foreach ($arr_all as $key) {
+              $sql = 'SELECT * FROM product WHERE id = '.$key['product_id'].' LIMIT 1';
 
+              $query  = $pdoconn->prepare($sql);
+              $query->execute();
+              $product = $query->fetchAll(PDO::FETCH_ASSOC);
+
+              $sql = 'SELECT * FROM users WHERE id = '.$key['user_id'].' LIMIT 1';
+
+              $query  = $pdoconn->prepare($sql);
+              $query->execute();
+              $user = $query->fetchAll(PDO::FETCH_ASSOC);
           ?>
           <tr>
             <td><?php echo $key['order_id']; ?></td>
-            <td><?php echo $key['user_name']; ?></td>
-            <td><?php echo $key['pname']; ?></td>
+            <td><?php echo $user[0]['name']; ?></td>
+            <td><?php echo $user[0]['address']; ?></td>
+            <td><?php echo $user[0]['phone']; ?></td>
+            <td><?php echo $product[0]['pname']; ?></td>
+            <td><?php echo $key['quantity']; ?></td>
+            <td><?php echo $product[0]['price']*$key['quantity']; ?></td>
             <td><?php echo $key['timestamp']; ?></td>
             <td><a href="../backends/admin/order-delete.php?id=<?php echo $key['order_id']; ?>"><span class="new badge" data-badge-caption="">Deliver</span></a></td>
           </tr>

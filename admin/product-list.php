@@ -8,7 +8,7 @@
 
 require('../backends/connection-pdo.php');
 
-$sql = 'SELECT product.image, product.id, product.pname, product.description, product.price, categories.name
+$sql = 'SELECT product.image, product.id, product.pname, product.stock, product.description, product.price, categories.name
         FROM product
         LEFT JOIN categories
         ON product.cat_id = categories.id';
@@ -54,6 +54,7 @@ $arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
               <th>Description</th>
               <th>Category</th>
               <th>Price</th>
+              <th>Stock</th>
               <th>Action</th>
           </tr>
         </thead>
@@ -70,6 +71,7 @@ $arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
             <td><?php echo $key['description']; ?></td>
             <td><?php echo $key['name']; ?></td>
             <td><?php echo $key['price']; ?> BDT</td>
+            <td><?php echo $key['stock']; ?></td>
             <td><a href="../backends/admin/pro-delete.php?id=<?php echo $key['id']; ?>"><span class="new badge" data-badge-caption="">Delete</span></a></td>
           </tr>
 

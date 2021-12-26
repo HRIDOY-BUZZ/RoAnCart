@@ -7,6 +7,6 @@
 				  </ul>
 
 
-		<div class="container" style="background-color: green">
+		<div class="container" style="width:80%; background-color: green">
 				<div class="row maincontent" style="background-color: green">
 					<div class="col s12 center" style="background-color: green">

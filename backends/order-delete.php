@@ -29,9 +29,31 @@ if (!isset($_REQUEST['id'])) {
 
 	$id = $_REQUEST['id'];
 
+	//Getting Order Details
+	$sql = "SELECT * FROM cart WHERE order_id = ?";
+	$query  = $pdoconn->prepare($sql);
+    $query->execute([$id]);
+	$order = $query->fetchAll(PDO::FETCH_ASSOC);
 
-	$sql = "DELETE FROM orders WHERE order_id = ?";
+	$product_id = $order[0]['product_id'];
+
+	//Getting Product Details
+	$sql = "SELECT * FROM product WHERE id = ".$product_id;
+	$query  = $pdoconn->prepare($sql);
+    $query->execute();
+	$product = $query->fetchAll(PDO::FETCH_ASSOC);
+
+	$stock = $product[0]['stock'];
+	//Updating Stock
+	$stock++;
+	$sql = 'UPDATE product SET stock= '.$stock.' WHERE id = '.$product_id;
+	$query  = $pdoconn->prepare($sql);
+	$query->execute();
+
+	//Deleteing Order
+	$sql = "DELETE FROM cart WHERE order_id = ?";
     $query  = $pdoconn->prepare($sql);
+
     if ($query->execute([$id])) {
 
     	$_SESSION['msg'] = 'Order '.$id.' is Cancelled!';

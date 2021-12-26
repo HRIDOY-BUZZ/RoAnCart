@@ -44,23 +44,25 @@ if (!preg_match($regex, $_POST['name']) || !preg_match($regex, $_POST['desc'])) 
 	$name = $_POST['name'];
 	$desc = $_POST['desc'];
 	$category = $_POST['category'];
-  $price = $_POST['price'];
+    $price = $_POST['price'];
+    $stock = $_POST['stock'];
 
+    //Image Title
     $sql0 = "SELECT MAX(id) FROM product LIMIT 1";
     $query  = $pdoconn->query($sql0);
-    //$query->execute();
     $result = $query->fetch();
     $imageId = $result[0]+1;
 
-     $image = $_FILES['image']['name'];
-     $imageName = $imageId.".jpg";
-     $target = "../../images/".$imageName;
-     $tmpname = $_FILES['image']['tmp_name'];
+    //Saving Image
+    $image = $_FILES['image']['name'];
+    $imageName = $imageId.".jpg";
+    $target = "../../images/".$imageName;
+    $tmpname = $_FILES['image']['tmp_name'];
 
 
-	$sql = "INSERT INTO product(cat_id,image,pname,description,price) VALUES(?,?,?,?,?)";
+	$sql = "INSERT INTO product(cat_id,image,pname,description,price,stock) VALUES(?,?,?,?,?,?)";
     $query  = $pdoconn->prepare($sql);
-    if ($query->execute([$category, $imageName, $name, $desc, $price])) {
+    if ($query->execute([$category, $imageName, $name, $desc, $price, $stock])) {
         move_uploaded_file($tmpname, $target);
     	  $_SESSION['msg'] = 'Product Added!';
 		    header('location: ../../admin/product-list.php');

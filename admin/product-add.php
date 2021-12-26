@@ -72,18 +72,24 @@ $arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
 	                <label for="desc" style="color: white;"><b>Description :</b></label>
 	                </div>
                 </div>
-						</div>
-						<div class="row">
-								<div class="col s7" style="">
+			</div>
+			<div class="row">
+				<div class="col m6 s12" style="">
                     <div class="input-field">
                       <input id="image" name="image" type="file" style="color: white; width: 70%; float:right;">
                       <label for="name" style="color: white; float:left;"><b>Product Picture :</b></label>
                     </div>
                 </div>
-								<div class="col s5" style="">
+				<div class="col m3 s6" style="">
                     <div class="input-field">
                         <input id="price" name="price" type="number" class="validate" style="color: white; width: 70%">
                         <label for="price" style="color: white;"><b>Product Price :</b></label>
+                    </div>
+                </div>
+                <div class="col m3 s6" style="">
+                    <div class="input-field">
+                        <input id="stock" name="stock" type="number" class="validate" style="color: white; width: 70%">
+                        <label for="stock" style="color: white;"><b>Stock :</b></label>
                     </div>
                 </div>
             </div>
@@ -91,7 +97,7 @@ $arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
             <div class="row">
                 <div class="col s12">
                     <div class="section right" style="padding: 15px 10px;">
-                        <a href="food-list.php" class="waves-effect waves-light btn">Dismiss</a>
+                        <a href="product-list.php" class="waves-effect waves-light btn">Dismiss</a>
                     </div>
                     <div class="section right" style="padding: 15px 20px;">
                         <button type="submit" class="waves-effect waves-light btn">Add New</button>
