@@ -126,3 +126,12 @@ h5 {
     margin-right: auto;
     font-size: 40px;
 }
+
+.no-order{
+    border: 2px solid black;
+    border-radius: 50px;
+    margin-bottom: 50px;
+}
+.no-order p{
+    font-size: 20px;
+}

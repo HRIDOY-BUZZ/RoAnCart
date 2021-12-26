@@ -41,8 +41,8 @@ if (isset($_SESSION['user_id'])) {
 		</div>
 
 		<?php if (count($arr_all) == 0) {
-	echo '<div class="section gray center" style="border: 1px solid black; border-radius: 5px;">
-			<p class="header">Sorry, you have not placed any orders yet!</p>
+	echo '<div class="section gray center no-order">
+			<p class="header"><b>Hi there! You do not have any orders pending in the Cart!<br>Please make some orders first!</b></p>
 		</div>';
 } else {  ?>
 
@@ -87,19 +87,19 @@ if (isset($_SESSION['user_id'])) {
 					</tr>
 
         </tbody>
-      </table>
+    </table>
 			<div style="text-align: center">
 				<p><i>**You will get 24 hours to cancel your order starting from Order Time.**</i></p>
+			</div>
+			<div class="section white center">
+				<a href="backends/confirm-order.php?id=<?php echo $_SESSION['user_id']; ?>" 
+				style="background: green;" class="btn btn-big waves-effect waves-block waves-light prices">
+					Confirm Order
+				</a>
 			</div>
 		<?php
 			}
 		?>
-		<div class="section white center">
-			<a href="backends/confirm-order.php?id=<?php echo $_SESSION['user_id']; ?>" 
-			style="background: green;" class="btn btn-big waves-effect waves-block waves-light prices">
-				Confirm Order
-			</a>
-		</div>
 
 	</div>
 
