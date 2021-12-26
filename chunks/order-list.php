@@ -48,13 +48,14 @@ if (isset($_SESSION['user_id'])) {
 
     <table class="centered responsive-table">
         <thead>
-          <tr>
-              <th>Order ID</th>
-              <th>Product Name</th>
-							<th>Price</th>
-							<th>Order Time</th>
-              <th>Action</th>
-          </tr>
+			<tr>
+				<th>Order ID</th>
+				<th>Product Name</th>
+				<th>Quantity</th>
+				<th>Price</th>
+				<th>Order Time</th>
+				<th>Action</th>
+			</tr>
         </thead>
 
         <tbody>
@@ -67,7 +68,8 @@ if (isset($_SESSION['user_id'])) {
           <tr>
             <td><?php echo $key['order_id']; ?></td>
             <td><?php echo $key['product_name']; ?></td>
-						<td><?php echo $key['price']; ?></td>
+			<td><?php echo $key['quantity']; ?> pcs</td>
+			<td><?php echo $key['price']*$key['quantity']; ?></td>
             <td><?php echo $key['timestamp']; ?></td>
             <td><a href="./backends/order-delete.php?id=<?php echo $key['order_id']; ?>"><span class="new badge" data-badge-caption="">Cancel Order</span></a></td>
           </tr>

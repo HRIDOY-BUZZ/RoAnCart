@@ -39,9 +39,9 @@ if($_GET['id'] == $_SESSION['user_id'])
 
         foreach($cart as $order)
         {
-            $sql = "INSERT INTO orders(order_id,user_id,product_id,product_name,user_name,price, timestamp) VALUES(?,?,?,?,?,?,?)";
+            $sql = "INSERT INTO orders(order_id,user_id,product_id,product_name,quantity,user_name,price,timestamp) VALUES(?,?,?,?,?,?,?,?)";
             $query  = $pdoconn->prepare($sql);
-            $query->execute([$order['order_id'], $order['user_id'], $order['product_id'], $order['product_name'], $order['user_name'], $order['price'], $order['timestamp']]);
+            $query->execute([$order['order_id'], $order['user_id'], $order['product_id'], $order['product_name'], $order['quantity'], $order['user_name'], $order['price'], $order['timestamp']]);
         }
 
         $sql = "DELETE FROM cart WHERE user_id = '".$user_id."'";

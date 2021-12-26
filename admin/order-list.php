@@ -48,6 +48,8 @@ $arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
               <th>Address</th>
               <th>Contact</th>
               <th>Product Name</th>
+              <th>Quantity</th>
+              <th>Price</th>
               <th>Timestamp</th>
               <th>Action</th>
           </tr>
@@ -75,6 +77,8 @@ $arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
             <td><?php echo $user[0]['address']; ?></td>
             <td><?php echo $user[0]['phone']; ?></td>
             <td><?php echo $product[0]['pname']; ?></td>
+            <td><?php echo $key['quantity']; ?></td>
+            <td><?php echo $product[0]['price']*$key['quantity']; ?></td>
             <td><?php echo $key['timestamp']; ?></td>
             <td><a href="../backends/admin/order-delete.php?id=<?php echo $key['order_id']; ?>"><span class="new badge" data-badge-caption="">Deliver</span></a></td>
           </tr>
