@@ -69,14 +69,14 @@ if (isset($_SESSION['user_id'])) {
             <td><?php echo $key['order_id']; ?></td>
             <td><?php echo $key['product_name']; ?></td>
 			<td><?php echo $key['quantity']; ?> pcs</td>
-			<td><?php echo $key['price']*$key['quantity']; ?></td>
+			<td><?php echo $key['price']*$key['quantity']; ?> BDT</td>
             <td><?php echo $key['timestamp']; ?></td>
             <td><a href="./backends/order-delete.php?id=<?php echo $key['order_id']; ?>"><span class="new badge" data-badge-caption="">Cancel Order</span></a></td>
           </tr>
 
           <?php
 							$cnt++;
-							$tprice += $key['price'];
+							$tprice += ($key['price']*$key['quantity']);
 						}
 					?>
 					<tr>
@@ -90,9 +90,6 @@ if (isset($_SESSION['user_id'])) {
 
         </tbody>
     </table>
-			<div style="text-align: center">
-				<p><i>**You will get 24 hours to cancel your order starting from Order Time.**</i></p>
-			</div>
 			<div class="section white center">
 				<a href="backends/confirm-order.php?id=<?php echo $_SESSION['user_id']; ?>" 
 				style="background: green;" class="btn btn-big waves-effect waves-block waves-light prices">

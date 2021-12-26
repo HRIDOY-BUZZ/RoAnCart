@@ -89,7 +89,7 @@ $arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
                 <div class="col m3 s6" style="">
                     <div class="input-field">
                         <input id="stock" name="stock" type="number" class="validate" style="color: white; width: 70%">
-                        <label for="stock" style="color: white;"><b>Quantity :</b></label>
+                        <label for="stock" style="color: white;"><b>Stock :</b></label>
                     </div>
                 </div>
             </div>
