@@ -72,7 +72,14 @@ $arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
             <td><?php echo $key['name']; ?></td>
             <td><?php echo $key['price']; ?> BDT</td>
             <td><?php echo $key['stock']; ?></td>
-            <td><a href="../backends/admin/pro-delete.php?id=<?php echo $key['id']; ?>"><span class="new badge" data-badge-caption="">Delete</span></a></td>
+            <td>
+              <a href="../backends/admin/pro-delete.php?id=<?php echo $key['id']; ?>">
+                <span class="new badge" style="margin: 5px 0" data-badge-caption="">Delete</span>
+              </a>
+              <a href="/admin/product-edit.php?id=<?php echo $key['id']; ?>">
+                <span class="new badge" style="margin: 5px 0" data-badge-caption="">Update</span>
+              </a>
+          </td>
           </tr>
 
           <?php } ?>
