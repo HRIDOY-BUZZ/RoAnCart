@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 26, 2021 at 07:05 PM
+-- Generation Time: Jan 04, 2022 at 08:12 PM
 -- Server version: 8.0.27-0ubuntu0.21.04.1
 -- PHP Version: 7.4.16
 
@@ -60,6 +60,13 @@ CREATE TABLE `cart` (
   `timestamp` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `cart`
+--
+
+INSERT INTO `cart` (`id`, `order_id`, `user_id`, `product_id`, `product_name`, `quantity`, `user_name`, `price`, `timestamp`) VALUES
+(68, 'TVP273946', '15', '1', '1575GHz Active GPS Antenna with SMA Male ', 2, 'Al-Amin', 220, '27:12:2021 01:34:24am');
+
 -- --------------------------------------------------------
 
 --
@@ -88,6 +95,38 @@ INSERT INTO `categories` (`id`, `name`, `short_desc`, `long_desc`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `done_orders`
+--
+
+CREATE TABLE `done_orders` (
+  `id` int NOT NULL,
+  `order_id` varchar(20) NOT NULL,
+  `user_id` varchar(10) NOT NULL,
+  `product_id` varchar(10) NOT NULL,
+  `product_name` text NOT NULL,
+  `quantity` int NOT NULL DEFAULT '1',
+  `user_name` varchar(100) NOT NULL,
+  `price` int NOT NULL,
+  `timestamp` varchar(50) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `id` int NOT NULL,
+  `user_id` int NOT NULL,
+  `delivery` tinyint NOT NULL DEFAULT '2',
+  `feedback` text,
+  `timestamp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `orders`
 --
 
@@ -110,7 +149,10 @@ CREATE TABLE `orders` (
 INSERT INTO `orders` (`id`, `order_id`, `user_id`, `product_id`, `product_name`, `quantity`, `user_name`, `price`, `timestamp`) VALUES
 (62, 'TVP958706', '15', '5', '11.1V 3S 30c 2800mah Li-Po Battery ', 1, 'Al-Amin', 2400, '27:12:2021 12:31:28am'),
 (63, 'TVP154416', '15', '3', 'Arduino Lilypad-AT Mega328P ', 1, 'Al-Amin', 400, '27:12:2021 12:31:25am'),
-(64, 'TVP291564', '15', '1', '1575GHz Active GPS Antenna with SMA Male ', 3, 'Al-Amin', 220, '27:12:2021 12:31:04am');
+(64, 'TVP291564', '15', '1', '1575GHz Active GPS Antenna with SMA Male ', 3, 'Al-Amin', 220, '27:12:2021 12:31:04am'),
+(65, 'TVP572813', '15', '5', '11.1V 3S 30c 2800mah Li-Po Battery ', 1, 'Al-Amin', 2400, '27:12:2021 01:16:31am'),
+(66, 'TVP670064', '15', '3', 'Arduino Lilypad-AT Mega328P ', 1, 'Al-Amin', 400, '27:12:2021 01:16:29am'),
+(67, 'TVP174765', '15', '1', '1575GHz Active GPS Antenna with SMA Male ', 2, 'Al-Amin', 220, '27:12:2021 01:16:25am');
 
 -- --------------------------------------------------------
 
@@ -133,12 +175,12 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`id`, `cat_id`, `image`, `pname`, `price`, `stock`, `description`) VALUES
-(1, 3, '1.jpg', '1575GHz Active GPS Antenna with SMA Male ', 220, 13, 'Dimension: 35 x 39 x 12 mm\r\nPower supply electric voltage: DC 3V or 5V\r\nElectric current: 10mA Type\r\nCenter frequency: 1575.42 + - 1.023 MHz\r\nTurn strength very much: RHCP\r\nIncrease a benefit: 29dB type (enlarge)\r\nVoice: 1.5dB\r\nHalt wave: max 1.8\r\nBandwidth: 10Mhz\r\nOutput resistance: 50 Ohm\r\nCable: 480 cm\r\nApply to deal with contact: SMA, SMB, BNC, MCX, MMCX\r\nWork temperature: -20 ° C - + 85 ° C\r\n'),
+(1, 3, '1.jpg', '1575GHz Active GPS Antenna with SMA Male ', 220, 5, 'Dimension: 35 x 39 x 12 mmPower supply electric voltage: DC 3V or 5VElectric current: 10mA TypeCenter frequency: 1575.42 + - 1.023 MHzTurn strength very much: RHCPIncrease a benefit: 29dB type (enlarge)Voice: 1.5dBHalt wave: max 1.8Bandwidth: 10MhzOutput resistance: 50 OhmCable: 480 cmApply to deal with contact: SMA, SMB, BNC, MCX, MMCXWork temperature: -20 ° C - + 85 ° C'),
 (2, 3, '2.jpg', '2.4G 2.5db Built in PCB Antenna Module ', 60, 0, 'PCB 2.5dB Antenna with IPX Connector Cable for GSM/GPRS/3G/4G 900/1800/2100 Bands. This is a multiband WIFI Bluetooth, GSM PCB Antenna with IPX Connector Cable. This microstrip antenna consists of a patch of metal foil of various shapes (a patch antenna) on the surface of a PCB, with a metal foil ground plane on the other side of the board.\r\nApplications: GSM Antenna for GSM Modules such as SIM900 SIM800L SIM908 SIM800C\r\n'),
-(3, 1, '9.jpg', 'Arduino Lilypad-AT Mega328P ', 400, 16, 'The Lilypad Arduino is a microcontroller board designed for wearables and e-textiles. It can be sewn to fabric and similarly mounted power supplies, sensors and actuators with conductive thread. The board is based on ATmega328P.\r\n\r\n'),
+(3, 1, '9.jpg', 'Arduino Lilypad-AT Mega328P ', 400, 2, 'The Lilypad Arduino is a microcontroller board designed for wearables and e-textiles. It can be sewn to fabric and similarly mounted power supplies, sensors and actuators with conductive thread. The board is based on ATmega328P.'),
 (4, 3, '3.jpg', '28db high gain GPS Ceramic Antenna', 150, 0, 'Central frequency:1575MHZ VSWR: 2:1 Bandwidth: ±30 MHz Impedance:50O maximal gain :>3dBic Based on 7x7cm'),
-(5, 5, '13.jpg', '11.1V 3S 30c 2800mah Li-Po Battery ', 2400, 18, 'This is a popular Chinese Food. People from every country enjoys it a lot.Tiger LiPo®, delivering rock solid, dependable, lightweight portable power systems that our customer emphatically recommend to their friends and colleagues are the Tiger LiPo way. By developing our passion to provide customers with an outstanding and unique product experience, we created our own pathway to success, leading the way to further innovation. Traveling around the world and you will find the Tiger LiPo® brand lipo battery used in every type of remote-controlled vehicles conceived. From unmanned drones to short course trucks, fast electric RC boats to high speed FPV racing airplanes, Tiger LiPo® brand powers them all. Drivers and pilots are looking for the best in power, performance, runtime, exceptional customer service and warranty trust Tiger LiPo batteries. '),
-(6, 5, '14.jpg', '22-2v-65C-lipo-battery ', 9000, 19, 'lipo 5400mAh 6S1P 65C lipo battery packs Max Burst Discharge:120C, Gens ace lipo 5000mah 6s1p battery suited to the following model: It is suit for 600/700 scale Heli. Airplane, Jet & boat.'),
+(5, 5, '13.jpg', '11.1V 3S 30c 2800mah Li-Po Battery ', 2400, 4, 'This is a popular Chinese Food. People from every country enjoys it a lot.Tiger LiPo®, delivering rock solid, dependable, lightweight portable power systems that our customer emphatically recommend to their friends and colleagues are the Tiger LiPo way. By developing our passion to provide customers with an outstanding and unique product experience, we created our own pathway to success, leading the way to further innovation. Traveling around the world and you will find the Tiger LiPo® brand lipo battery used in every type of remote-controlled vehicles conceived. From unmanned drones to short course trucks, fast electric RC boats to high speed FPV racing airplanes, Tiger LiPo® brand powers them all. Drivers and pilots are looking for the best in power, performance, runtime, exceptional customer service and warranty trust Tiger LiPo batteries. '),
+(6, 5, '14.jpg', '22-2v-65C-lipo-battery ', 9000, 3, 'lipo 5400mAh 6S1P 65C lipo battery packs Max Burst Discharge:120C, Gens ace lipo 5000mah 6s1p battery suited to the following model: It is suit for 600/700 scale Heli. Airplane, Jet & boat.'),
 (7, 2, '18.jpg', 'ESP32-Cam Wi-Fi + Bluetooth Camera Module', 950, 0, 'ESP32-CAM is a WIFI+ bluetooth dual-mode development board that uses PCB on-board antennas and cores based on ESP32 chips. It can work independently as a minimum system.\r\nESP integrates WiFi, traditional bluetooth and BLE Beacon, with 2 high-performance 32-bit LX6 CPUs, 7-stage pipeline architecture, main frequency adjustment range 80MHz to 240MHz, on-chip sensor, Hall sensor, temperature sensor, etc.\r\nFully compliant with WiFi 802.11b/g/n/e/i and bluetooth 4.2 standards, it can be used as a master mode to build an independent network controller, or as a slave to other host MCUs to add networking capabilities to existing devices.\r\nESP32-CAM can be widely used in various IoT applications. It is suitable for home smart devices, industrial wireless control, wireless monitoring, QR wireless identification, wireless positioning system signals and other IoT applications. It is an ideal solution for IoT applications. \r\n'),
 (8, 5, '15.jpg', '11.1V 3S 1500mAh 30C Tiger Power ', 1250, 19, '1)High energy density \r\n2) High working voltage for single battery cells \r\n3) Pollution-free \r\n4) Long cycle life >500times \r\n5) No memory effects \r\n6) Capacity, resistance, Voltage, platform time consistency is good \r\n7) With short-circuit production function, safe and reliable \r\n8) Factory price& High quality \r\n9) Good consistency, low self-discharge \r\n'),
 (9, 2, '17.jpg', 'Raspberry Pi Camera Module 5M', 400, 20, 'This 5mp camera module is capable of 1080p video and still images and connects directly to your Raspberry Pi. Connect the included ribbon cable to the CSI (Camera Serial Interface) port on your Raspberry Pi, boot up the latest version of Raspbian and you are good to go! The board itself is tiny, at around 25mm x 20mm x 9mm and weighing in at just over 3g, making it perfect for mobile or other applications where size and weight are important. The sensor has a native resolution of 5 megapixel, and has a fixed focus lens onboard.\r\n'),
@@ -214,6 +256,18 @@ ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `done_orders`
+--
+ALTER TABLE `done_orders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
@@ -246,7 +300,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -255,10 +309,22 @@ ALTER TABLE `categories`
   MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `done_orders`
+--
+ALTER TABLE `done_orders`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+
+--
+-- AUTO_INCREMENT for table `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=65;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `product`
