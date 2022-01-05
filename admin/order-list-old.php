@@ -3,27 +3,23 @@
 <?php require('layout/topnav.php'); ?>
 <?php require('layout/left-sidebar-short.php'); ?>
 
-
 <?php
 
 require('../backends/connection-pdo.php');
 
 // $sql = 'SELECT orders.order_id, orders.user_name, orders.timestamp, product.pname FROM orders LEFT JOIN product ON orders.product_id = product.id';
-$sql = 'SELECT * FROM orders';
+$sql = 'SELECT * FROM done_orders';
 
 $query  = $pdoconn->prepare($sql);
 $query->execute();
 $arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
 
-
-
 ?>
-
 
 <div class="section white-text" style="background: #4caf50;">
 
 	<div class="section">
-		<h3>All Pending Orders</h3>
+		<h3>Delivered Orders</h3>
 	</div>
 
   <?php
@@ -50,8 +46,8 @@ $arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
               <th>Product Name</th>
               <th>Quantity</th>
               <th>Price</th>
-              <th>Timestamp</th>
-              <th>Action</th>
+              <th>Delivered At</th>
+              <!-- <th>Action</th> -->
           </tr>
         </thead>
 
@@ -80,14 +76,7 @@ $arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
             <td><?php echo $key['quantity']; ?></td>
             <td><?php echo $product[0]['price']*$key['quantity']; ?></td>
             <td><?php echo $key['timestamp']; ?></td>
-            <td>
-              <a href="../backends/admin/order-done.php?id=<?php echo $key['order_id']; ?>">
-                <span class="new badge" data-badge-caption="" style="margin: 5px 0">DELIVER</span>
-              </a>
-              <a href="../backends/admin/order-delete.php?id=<?php echo $key['order_id']; ?>">
-                <span class="new badge" data-badge-caption="" style="margin: 5px 0">CANCEL</span>
-              </a>
-            </td>
+            <!-- <td><a href="../backends/admin/order-delete.php?id=<?php //echo $key['order_id']; ?>"><span class="new badge" data-badge-caption="">Deliver</span></a></td> -->
           </tr>
 
           <?php } ?>

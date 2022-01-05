@@ -10,7 +10,8 @@
 				<ul class="nav nav-sidebar list-group">
 				    <li class="list-group-item active"><a href="product-list.php">Products</a></li>
 				    <li class="list-group-item"><a href="category-list.php">Category</a></li>
-				    <li class="list-group-item"><a href="order-list.php">Orders</a></li>
+				    <li class="list-group-item"><a href="order-list.php">Pending Orders</a></li>
+					<li class="list-group-item"><a href="order-list-old.php">Delivered Orders</a></li>
 				    <li class="list-group-item modal-trigger" data-target="modal1"><a href="#">About</a></li>
-				  </ul>
+				</ul>
 			</div>

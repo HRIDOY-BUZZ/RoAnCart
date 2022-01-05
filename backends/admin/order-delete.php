@@ -34,7 +34,7 @@ if (!isset($_REQUEST['id'])) {
     $query  = $pdoconn->prepare($sql);
     if ($query->execute([$id])) {
 
-    	$_SESSION['msg'] = 'Order Delivered!';
+    	$_SESSION['msg'] = 'Order Deleted!';
 
 		header('location: ../../admin/order-list.php');
     	
