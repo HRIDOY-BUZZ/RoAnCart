@@ -7,7 +7,7 @@ $arr_all = array();
 
 if (isset($_SESSION['user_id'])) {
 
-	$sql = 'SELECT * FROM cart WHERE user_id = "'.$_SESSION['user_id'].'"';
+	$sql = 'SELECT * FROM orders WHERE user_id = "'.$_SESSION['user_id'].'"';
 	$query  = $pdoconn->prepare($sql);
 	$query->execute();
  	$arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -37,7 +37,7 @@ if (isset($_SESSION['user_id'])) {
 		?>
 
 		<div class="section white center">
-			<h3 class="header">My Orders!</h3>
+			<h3 class="header">Previous Orders!</h3>
 		</div>
 
 		<?php if (count($arr_all) == 0) {
@@ -54,55 +54,56 @@ if (isset($_SESSION['user_id'])) {
 				<th>Quantity</th>
 				<th>Price</th>
 				<th>Order Time</th>
-				<th>Action</th>
+				<th>Status</th>
 			</tr>
         </thead>
 
         <tbody>
-          <?php
-						$cnt = 0;
-						$tprice = 0;
-            foreach ($arr_all as $key) {
+        <?php
+			$cnt = 0;
+			foreach ($arr_all as $key) {
 
-          ?>
-          <tr>
+        ?>
+        <tr style="background: aliceblue;">
             <td><?php echo $key['order_id']; ?></td>
             <td><?php echo $key['product_name']; ?></td>
 			<td><?php echo $key['quantity']; ?> pcs</td>
 			<td><?php echo $key['price']*$key['quantity']; ?> BDT</td>
             <td><?php echo $key['timestamp']; ?></td>
-            <td><a href="./backends/order-delete.php?id=<?php echo $key['order_id']; ?>"><span class="new badge" data-badge-caption="">Cancel Order</span></a></td>
-          </tr>
+            <td><span class="badge" data-badge-caption="">Pending Deliver</span></td>
+        </tr>
 
-          <?php
-							$cnt++;
-							$tprice += ($key['price']*$key['quantity']);
-						}
-					?>
-					<tr>
-						<td colspan="2">
-							<h3>Total Products:  <?php echo $cnt; ?></h3>
-						</td>
-						<td colspan="2">
-							<h3>Total Price:  <?php echo $tprice; ?> BDT</h3>
-						</td>
-					</tr>
+        <?php
+				$cnt++;
+			}
+
+			$sql = 'SELECT * FROM done_orders WHERE user_id = "'.$_SESSION['user_id'].'"';
+			$query  = $pdoconn->prepare($sql);
+			if($query->execute())
+			{
+				$arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
+
+				$cnt = 0;
+				foreach ($arr_all as $key) {
+
+		?>
+			<tr>
+				<td><?php echo $key['order_id']; ?></td>
+				<td><?php echo $key['product_name']; ?></td>
+				<td><?php echo $key['quantity']; ?> pcs</td>
+				<td><?php echo $key['price']*$key['quantity']; ?> BDT</td>
+				<td><?php echo $key['timestamp']; ?></td>
+				<td><span class="badge" data-badge-caption="">Delivered</span></td>
+			</tr>
+
+		<?php
+					$cnt++;
+				}
+			}
+
+		?>
         </tbody>
     </table>
-			<div class="section white center row">
-				<div class="col s12 m6">
-					<a href="/old-orders.php" style="background: green;" 
-					class="btn btn-right waves-effect waves-block waves-light prices">
-						Vew Old Orders
-					</a>
-				</div>
-				<div class="col s12 m6">
-					<a href="backends/confirm-order.php?id=<?php echo $_SESSION['user_id']; ?>" 
-					style="background: green;" class="btn btn-left waves-effect waves-block waves-light prices">
-						Confirm Order
-					</a>
-				</div>
-			</div>
 		<?php
 			}
 		?>
