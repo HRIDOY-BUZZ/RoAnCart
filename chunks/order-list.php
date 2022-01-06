@@ -68,7 +68,13 @@ if (isset($_SESSION['user_id'])) {
           <tr>
             <td><?php echo $key['order_id']; ?></td>
             <td><?php echo $key['product_name']; ?></td>
-			<td><?php echo $key['quantity']; ?> pcs</td>
+			<td>
+				<div>
+					<a href="./backends/order-quantity.php?id=<?php echo $key['order_id']; ?>&q=inc"><button class="new badge">+</button></a>
+					<?php echo $key['quantity']; ?> pcs
+					<a href="./backends/order-quantity.php?id=<?php echo $key['order_id']; ?>&q=dec"><button class="new badge">-</button></a>
+				</div>
+			</td>
 			<td><?php echo $key['price']*$key['quantity']; ?> BDT</td>
             <td><?php echo $key['timestamp']; ?></td>
             <td><a href="./backends/order-delete.php?id=<?php echo $key['order_id']; ?>"><span class="new badge" data-badge-caption="">Cancel Order</span></a></td>
