@@ -10,13 +10,8 @@ if (isset($_SESSION['user_id'])) {
 	$sql = 'SELECT * FROM cart WHERE user_id = "'.$_SESSION['user_id'].'"';
 	$query  = $pdoconn->prepare($sql);
 	$query->execute();
- 	$arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
-
+	$arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
 }
-
-
-
-
 
 ?>
 
@@ -40,11 +35,22 @@ if (isset($_SESSION['user_id'])) {
 			<h3 class="header">My Orders!</h3>
 		</div>
 
-		<?php if (count($arr_all) == 0) {
-	echo '<div class="section gray center no-order">
-			<p class="header"><b>Hi there! You do not have any orders pending in the Cart!<br>Please make some orders first!</b></p>
-		</div>';
-} else {  ?>
+		<?php if (count($arr_all) == 0) { ?>
+			<div class="section gray center no-order">
+				<p class="header"><b>Hi there! You do not have any orders pending in the Cart!<br>Please make some orders first!</b></p>
+			</div>
+			<div class="section white center row">
+				<div class="col s12 m6">
+					<a href="/old-orders.php" style="background: green;" 
+					class="btn btn-right waves-effect waves-block waves-light prices">
+						Vew Old Orders
+					</a>
+				</div>
+				<div class="col s12 m6">
+				</div>
+			</div>
+
+		<?php } else {  ?>
 
     <table class="centered responsive-table">
         <thead>
