@@ -8,7 +8,7 @@
 require('../backends/connection-pdo.php');
 
 // $sql = 'SELECT orders.order_id, orders.user_name, orders.timestamp, product.pname FROM orders LEFT JOIN product ON orders.product_id = product.id';
-$sql = 'SELECT * FROM done_orders';
+$sql = 'SELECT * FROM done_orders WHERE 1 ORDER BY timestamp DESC';
 
 $query  = $pdoconn->prepare($sql);
 $query->execute();
