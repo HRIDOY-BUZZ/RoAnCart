@@ -10,8 +10,12 @@ if (isset($_SESSION['user_id'])) {
 	$sql = 'SELECT * FROM orders WHERE user_id = "'.$_SESSION['user_id'].'"';
 	$query  = $pdoconn->prepare($sql);
 	$query->execute();
- 	$arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
+	$orders = $query->fetchAll(PDO::FETCH_ASSOC);
 
+	$sql = 'SELECT * FROM done_orders WHERE user_id = "'.$_SESSION['user_id'].'"';
+	$query  = $pdoconn->prepare($sql);
+	$query->execute();
+	$delivered = $query->fetchAll(PDO::FETCH_ASSOC);
 }
 
 
@@ -40,9 +44,9 @@ if (isset($_SESSION['user_id'])) {
 			<h3 class="header">Previous Orders!</h3>
 		</div>
 
-		<?php if (count($arr_all) == 0) {
+		<?php if (count($orders) == 0 && count($delivered) == 0) {
 	echo '<div class="section gray center no-order">
-			<p class="header"><b>Hi there! You do not have any orders pending in the Cart!<br>Please make some orders first!</b></p>
+			<p class="header"><b>Hi there! You do not have any orders in the Cart History!</b></p>
 		</div>';
 } else {  ?>
 
@@ -60,8 +64,8 @@ if (isset($_SESSION['user_id'])) {
 
         <tbody>
         <?php
-			$cnt = 0;
-			foreach ($arr_all as $key) {
+			$ocnt = 0;
+			foreach ($orders as $key) {
 
         ?>
         <tr style="background: aliceblue;">
@@ -74,17 +78,11 @@ if (isset($_SESSION['user_id'])) {
         </tr>
 
         <?php
-				$cnt++;
+				$ocnt++;
 			}
 
-			$sql = 'SELECT * FROM done_orders WHERE user_id = "'.$_SESSION['user_id'].'"';
-			$query  = $pdoconn->prepare($sql);
-			if($query->execute())
-			{
-				$arr_all = $query->fetchAll(PDO::FETCH_ASSOC);
-
-				$cnt = 0;
-				foreach ($arr_all as $key) {
+				$dcnt = 0;
+				foreach ($delivered as $key) {
 
 		?>
 			<tr>
@@ -97,10 +95,8 @@ if (isset($_SESSION['user_id'])) {
 			</tr>
 
 		<?php
-					$cnt++;
-				}
+			$dcnt++;
 			}
-
 		?>
         </tbody>
     </table>
